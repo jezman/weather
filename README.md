@@ -1,4 +1,7 @@
-LCD Screen [MT-20S4A 20x4](http://www.melt.com.ru/docs/MT-20S4A.pdf) (Made in Russia). Based on HD44780.
+1. Raspberry Pi 3
+2. [LCD Screen MT-20S4A 20x4](http://www.melt.com.ru/docs/MT-20S4A.pdf) (Made in Russia). Based on HD44780.
+3. [Ralay switch RTD14005](http://www.mouser.com/ds/2/418/NG_DS_RT1_1014-729126.pdf)
+4. [DHT11 Humidity & Temperature Sensor](http://www.dfrobot.com/image/data/DFR0067/DFR0067_DS_10_en.pdf)
 
 | LCD Pin| Pin assignment | Raspberry Pi 2/3 |
 |:---:|:-----------------:|:--------------:|
