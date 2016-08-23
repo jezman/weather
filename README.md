@@ -54,18 +54,20 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(lcd_pin, GPIO.OUT)
 
-p = GPIO.PWM(lcd_pin, 50)
-p.start(0)
+current_time = time.strftime('%H')
+br = GPIO.PWM(lcd_pin, 50)
+br.start(0)
+
 try:
-    while 1:
-        for dc in range(0, 101, 5):
-            p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
-        for dc in range(100, -1, -5):
-            p.ChangeDutyCycle(dc)
-            time.sleep(0.1)
-except KeyboardInterrupt:
+    while True:
+        if '07' < current_time < '17':
+            br.ChangeDutyCycle(100)
+        else:
+            br.ChangeDutyCycle(50)
+    time.sleep(900)
+except KeyboardInterrput:
     pass
-p.stop()
+
+br.stop()
 GPIO.cleanup(18)
 ```
