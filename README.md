@@ -1,6 +1,6 @@
-LCD Screen MT-20S4A 20x4 (Made in Russia). Based on HD44780.
+LCD Screen [MT-20S4A 20x4](http://www.melt.com.ru/docs/MT-20S4A.pdf) (Made in Russia). Based on HD44780.
 
-| LCD Pin| Pin assignment | Raspberry Pi   |
+| LCD Pin| Pin assignment | Raspberry Pi 2/3 |
 |:---:|:-----------------:|:--------------:|
 | 1  | GND                |            GND |
 | 2  | +3V/5V             |           +5V  |
@@ -15,11 +15,34 @@ LCD Screen MT-20S4A 20x4 (Made in Russia). Based on HD44780.
 | 15 | +LED               | GPIO 18/ Pin 12|
 | 16 | -LED               |           GND  |
 
-* Pin 7-10 not used.
-* GPIO 16 - Ralay RTD14005.
+* LCD Pin 7-10 not used.
 
-## Brightness control
+### Relay switch to NC (normal closed)
 ```python
+#!/usr/bin/env python
+
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(4, GPIO.OUT) # GPIO 4/ Pin 7 - Ralay.
+GPIO.output(4, False)
+GPIO.cleanup(4)
+```
+### Relay switch to NO (normal open)
+```python
+#!/usr/bin/env python
+
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(4, GPIO.OUT) # GPIO 4/ Pin 7 - Ralay.
+GPIO.output(4, True)
+```
+
+### Brightness control
+```python
+#!/usr/bin/env python
+
 import time
 import RPi.GPIO as GPIO
 
@@ -41,5 +64,5 @@ try:
 except KeyboardInterrupt:
     pass
 p.stop()
-GPIO.cleanup()
+GPIO.cleanup(18)
 ```
